@@ -1,22 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import "./First.css";
 
 const First = () => {
-  const title = "First component";
-  const flag = true;
+  const [count, setCount] = useState(0);
+  const [showCounter, setShowCounter] = useState(false);
+  const [arr, setArr] = useState([23, 1, 4]);
+
+  const increment = () => {
+    setCount(count + 1);
+  };
+
+  const decrement = () => {
+    setCount(count - 1);
+  };
+
+  const addElement = () => { 
+    setArr([...arr, Math.round(Math.random() * 20)]);
+  }
 
   return (
     <>
-      <h1 className="title">{title}</h1>
-      <p style={{ color: "orange", fontSize: "1.5em" }}>
-        Lorem, ipsum. {new Date().getDate()}
-      </p>
+      <div>
+        <button onClick={addElement}>add</button>
+        {arr.join(', ')}
+      </div>
 
-      {flag ? <h2>Heading 2</h2> : ""}
 
-      {flag && <h2>Heading 2</h2>}
+      <button onClick={() => setShowCounter(!showCounter)}>show counter</button>
+
+      {showCounter && (
+        <div>
+          <button onClick={decrement}>-</button>
+          {count}
+          <button onClick={increment}>+</button>
+        </div>
+      )}
     </>
   );
 };
 
 export default First;
+

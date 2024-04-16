@@ -1,17 +1,33 @@
-import React from 'react';
+import React, { useState } from "react";
 
-const TodoAdd = () => {
-  const clickHandler = (message) => { 
-    alert(message)
-  }
+const TodoAdd = ({ addTask }) => {
+  const [title, setTitle] = useState("");
+  const [titleError, setTitleError] = useState(null);
 
-    return (
-      <div>
-        <input type="text" />
+  const clickHandler = () => {
+    if (title.trim().length === 0) {
+      setTitleError("Title is required");
+      return;
+    }
+    addTask(title);
+    setTitle("");
+    setTitleError(null);
+  };
 
-        <button onClick={() => clickHandler('Welcome')}>Add</button>
-      </div>
-    );
-}
+  return (
+    <div>
+      <input
+        type="text"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.code === "Enter") clickHandler();
+        }}
+      />
+      <button onClick={clickHandler}>Add</button>
+      {titleError && <div className="error">{titleError}</div>}
+    </div>
+  );
+};
 
 export default TodoAdd;
