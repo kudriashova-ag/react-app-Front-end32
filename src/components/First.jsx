@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./First.css";
 
 const First = () => {
   const [count, setCount] = useState(0);
   const [showCounter, setShowCounter] = useState(false);
   const [arr, setArr] = useState([23, 1, 4]);
+
+  useEffect(() => {
+    console.log("effect");
+  }, [arr]);
 
   const increment = () => {
     setCount(count + 1);
