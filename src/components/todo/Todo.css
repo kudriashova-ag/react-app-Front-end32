@@ -13,3 +13,15 @@
 .task-done{
     text-decoration: line-through;
 }
+
+.btn.active{
+    background: dodgerblue;
+    color: #fff;
+}
+
+.btn{
+    border: none;
+    background: #ddd;
+    padding: 5px;
+    margin: 5px;
+}

@@ -8,38 +8,53 @@ import { nanoid } from "nanoid";
 
 const TodoList = () => {
   const [todoList, setTodoList] = useState(todo);
+  const [filter, setFilter] = useState('All');
 
   const addTask = (title) => {
     setTodoList([...todoList, { id: nanoid(), done: false, title }]);
   };
-
-  const removeTask = (id) => { 
-    setTodoList( todoList.filter(task => task.id !== id) )
-  }
-
+  const removeTask = (id) => {
+    setTodoList(todoList.filter((task) => task.id !== id));
+  };
   const toggleDone = (id) => {
-    const updatedTodoList = todoList.map(task => { 
+    const updatedTodoList = todoList.map((task) => {
       if (task.id === id) {
-        return {...task, done: !task.done}
+        return { ...task, done: !task.done };
       }
       return task;
-    })
+    });
     setTodoList(updatedTodoList);
-   }
+  };
+  const updateTask = (id, title) => {
+    const updatedTodoList = todoList.map((task) => {
+      if (task.id === id) {
+        return { ...task, title };
+      }
+      return task;
+    });
+    setTodoList(updatedTodoList);
+  };
+
+  const filterMap = {
+    All: () => true,
+    Done: (task) => task.done,
+    'Todo tasks': (task) => !task.done
+  };
 
   return (
     <div>
       <h1>Todo List</h1>
       <TodoAdd addTask={addTask} />
       <div>
-        <TodoFilter />
+        <TodoFilter setFilter={setFilter} filterMap={filterMap} activeFilter={filter} />
         <ul className="todo-list">
-          {todoList.map((item, index) => (
+          {todoList.filter(filterMap[filter]).map((item) => (
             <TodoItem
               {...item}
-              key={index}
+              key={item.id}
               removeTask={removeTask}
               toggleDone={toggleDone}
+              updateTask={updateTask}
             />
           ))}
         </ul>

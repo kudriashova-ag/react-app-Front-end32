@@ -1,13 +1,22 @@
-import React from 'react';
+import classNames from "classnames";
+import React from "react";
 
-const TodoFilter = () => {
-    return (
-      <div>
-        <button>TODO</button>
-        <button>DONE</button>
-        <button>ALL</button>
-      </div>
-    );
-}
+const TodoFilter = ({ setFilter, filterMap, activeFilter }) => {
+  const filterKeys = Object.keys(filterMap); // ['All', 'Todo', 'Done']
+
+  return (
+    <div>
+      {filterKeys.map((filterName) => (
+        <button
+          key={filterName}
+          onClick={() => setFilter(filterName)}
+          className={classNames("btn", { active: activeFilter === filterName })}
+        >
+          {filterName}
+        </button>
+      ))}
+    </div>
+  );
+};
 
 export default TodoFilter;
