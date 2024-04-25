@@ -1,0 +1,29 @@
+.game-wrap{
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.top-panel{
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.5em;
+    margin-bottom: 1em;
+}
+
+.game{
+    border: 5px #333 solid;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 5px;
+    height: 400px;
+    background: rgb(62, 62, 62);
+}
+
+.game-item{
+    background: silver;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+}

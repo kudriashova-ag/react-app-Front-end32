@@ -1,13 +1,15 @@
+import { Outlet } from 'react-router-dom';
 import './App.css';
-import First from './components/First';
-import TodoList from './components/todo/Todo-list';
+import Menu from './components/header/menu';
 
 function App() {
   return (
     <div>
-      <TodoList />
+      <Menu />
+      <Outlet />
     </div>
   );
 }
 
 export default App;
+
