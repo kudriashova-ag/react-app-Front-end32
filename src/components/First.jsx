@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./First.css";
+import { Link } from "react-router-dom";
 
 const First = () => {
   const [count, setCount] = useState(0);
@@ -18,20 +19,17 @@ const First = () => {
     setCount(count - 1);
   };
 
-  const addElement = () => { 
+  const addElement = () => {
     setArr([...arr, Math.round(Math.random() * 20)]);
-  }
+  };
 
   return (
     <>
       <div>
         <button onClick={addElement}>add</button>
-        {arr.join(', ')}
+        {arr.join(", ")}
       </div>
-
-
       <button onClick={() => setShowCounter(!showCounter)}>show counter</button>
-
       {showCounter && (
         <div>
           <button onClick={decrement}>-</button>
@@ -39,9 +37,9 @@ const First = () => {
           <button onClick={increment}>+</button>
         </div>
       )}
+      See more in <Link to="/todo">todo</Link>
     </>
   );
 };
 
 export default First;
-
