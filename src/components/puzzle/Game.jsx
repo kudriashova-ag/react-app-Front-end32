@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { shuffle } from "./shuffleFunction";
 import Timer from "./Timer";
 import "./Game.css";
@@ -13,8 +13,8 @@ const Game = () => {
 
   const newGame = () => {
     setMoves(0);
-    setTimerActive(false);
     setTime(0);
+    setTimerActive(false);
     setShuffledArray(shuffle());
   };
 
@@ -29,17 +29,29 @@ const Game = () => {
     e.preventDefault();
     const itemIndex = e.dataTransfer.getData("item");
     const emptyIndex = e.target.dataset.index;
-    
-      if ( !(Math.abs(itemIndex - emptyIndex) === 4 || Math.abs(itemIndex - emptyIndex) === 1) ) {
-        return;
-      }
 
-      const newArray = [...shuffledArray];
-      newArray.splice(itemIndex, 1, shuffledArray[emptyIndex]);
-      newArray.splice(emptyIndex, 1, shuffledArray[itemIndex]);
-      setShuffledArray([...newArray]);
+    if (
+      !(
+        Math.abs(itemIndex - emptyIndex) === 4 ||
+        Math.abs(itemIndex - emptyIndex) === 1
+      )
+    ) {
+      return;
+    }
+
+    const newArray = [...shuffledArray];
+    newArray.splice(itemIndex, 1, shuffledArray[emptyIndex]);
+    newArray.splice(emptyIndex, 1, shuffledArray[itemIndex]);
+    setShuffledArray([...newArray]);
+
+    setMoves(moves + 1);
   };
-/* 
+
+  useEffect(() => {
+    if (moves === 1) setTimerActive(true);
+  }, [moves]);
+
+  /* 
 5 - 4
 */
   return (
@@ -48,7 +60,7 @@ const Game = () => {
 
       <div className="top-panel">
         <div>Moves: {moves}</div>
-        <Timer time={time} />
+        <Timer time={time} setTime={setTime} timerActive={timerActive} />
       </div>
 
       <div className="game">
