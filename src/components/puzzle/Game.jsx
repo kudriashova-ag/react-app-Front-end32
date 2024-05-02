@@ -1,15 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { shuffle } from "./shuffleFunction";
 import Timer from "./Timer";
 import "./Game.css";
 import GameItem from "./Game-Item";
 import GameItemEmpty from "./Game-item-empty";
+import { ThemeContext } from "../../contexts/ThemeContext";
+import classNames from "classnames";
 
 const Game = () => {
   const [shuffledArray, setShuffledArray] = useState(shuffle());
   const [moves, setMoves] = useState(0);
   const [time, setTime] = useState(0);
   const [timerActive, setTimerActive] = useState(false);
+  const {theme} = useContext(ThemeContext);
 
   const newGame = () => {
     setMoves(0);
@@ -51,11 +54,8 @@ const Game = () => {
     if (moves === 1) setTimerActive(true);
   }, [moves]);
 
-  /* 
-5 - 4
-*/
   return (
-    <div className="game-wrap">
+    <div className={classNames('game-wrap', {dark: theme==='dark'}) }>
       <h1>Puzzle Game</h1>
 
       <div className="top-panel">

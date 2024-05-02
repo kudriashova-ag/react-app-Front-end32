@@ -27,3 +27,12 @@
     align-items: center;
     font-size: 2em;
 }
+
+.game.dark{
+    border-color: #000;
+    background-color: #000;
+}
+.dark .game-item{
+    background: #333;
+    color: #fff
+}

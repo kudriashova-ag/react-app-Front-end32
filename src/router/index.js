@@ -4,6 +4,7 @@ import First from "../components/First";
 import { createBrowserRouter } from "react-router-dom";
 import Home from "../components/home-page/Home";
 import Game from "../components/puzzle/Game";
+import Products from "../components/products/Products";
 
 export const router = createBrowserRouter([
     {
@@ -26,6 +27,10 @@ export const router = createBrowserRouter([
             {
                 path: 'puzzle',
                 element: <Game />
+            },
+            {
+                path: 'products',
+                element: <Products />
             },
         ]
     }

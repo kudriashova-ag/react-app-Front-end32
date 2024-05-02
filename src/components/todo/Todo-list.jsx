@@ -6,6 +6,7 @@ import TodoItem from "./Todo-item";
 import todo from "./Todo-data";
 import { nanoid } from "nanoid";
 
+
 const TodoList = () => {
   const [todoList, setTodoList] = useState([]);
   const [filter, setFilter] = useState("All");
@@ -53,6 +54,7 @@ const TodoList = () => {
   };
 
   return (
+  
     <div>
       <h1>Todo List</h1>
       <TodoAdd addTask={addTask} />
@@ -75,6 +77,7 @@ const TodoList = () => {
         </ul>
       </div>
     </div>
+
   );
 };
 
