@@ -1,50 +1,47 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import "./Todo.css";
 import TodoAdd from "./Todo-add";
 import TodoFilter from "./Todo-filter";
 import TodoItem from "./Todo-item";
 import todo from "./Todo-data";
-import { nanoid } from "nanoid";
-
+import todoReducer from "./TodoReducer";
 
 const TodoList = () => {
-  const [todoList, setTodoList] = useState([]);
-  const [filter, setFilter] = useState("All");
+  //     state     фун-ція, яка обробляє state
+  const [todoList, dispatch] = useReducer(todoReducer, JSON.parse(localStorage.getItem('todo')) || todo);
 
-  useEffect(() => { 
-    setTodoList(JSON.parse(localStorage.getItem('todo')) || todo);
-  }, []);
+  const [filter, setFilter] = useState("All");
 
   useEffect(() => {
     localStorage.setItem("todo", JSON.stringify(todoList));
   }, [todoList]);
 
   const addTask = (title) => {
-    setTodoList([...todoList, { id: nanoid(), done: false, title }]);
+    dispatch({
+      type: "addd",
+      payload: title,
+    });
   };
 
   const removeTask = (id) => {
-    setTodoList(todoList.filter((task) => task.id !== id));
+    dispatch({
+      type: "remove",
+      payload: id,
+    });
   };
 
   const toggleDone = (id) => {
-    const updatedTodoList = todoList.map((task) => {
-      if (task.id === id) {
-        return { ...task, done: !task.done };
-      }
-      return task;
+    dispatch({
+      type: "toggleDone",
+      payload: id,
     });
-    setTodoList(updatedTodoList);
   };
-  
+
   const updateTask = (id, title) => {
-    const updatedTodoList = todoList.map((task) => {
-      if (task.id === id) {
-        return { ...task, title };
-      }
-      return task;
+    dispatch({
+      type: "update",
+      payload: { id, title },
     });
-    setTodoList(updatedTodoList);
   };
 
   const filterMap = {
@@ -54,7 +51,6 @@ const TodoList = () => {
   };
 
   return (
-  
     <div>
       <h1>Todo List</h1>
       <TodoAdd addTask={addTask} />
@@ -77,7 +73,6 @@ const TodoList = () => {
         </ul>
       </div>
     </div>
-
   );
 };
 
