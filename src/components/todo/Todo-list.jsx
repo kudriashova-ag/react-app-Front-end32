@@ -8,7 +8,10 @@ import todoReducer from "./TodoReducer";
 
 const TodoList = () => {
   //     state     фун-ція, яка обробляє state
-  const [todoList, dispatch] = useReducer(todoReducer, JSON.parse(localStorage.getItem('todo')) || todo);
+  const [todoList, dispatch] = useReducer(
+    todoReducer,
+    JSON.parse(localStorage.getItem("todo")) || todo
+  );
 
   const [filter, setFilter] = useState("All");
 

@@ -5,6 +5,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Home from "../components/home-page/Home";
 import Game from "../components/puzzle/Game";
 import Products from "../components/products/Products";
+import Counters from "../components/Counters/Counters";
 
 export const router = createBrowserRouter([
     {
@@ -22,7 +23,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'first',
-                element: <First />
+                element: <Counters />
             },
             {
                 path: 'puzzle',
