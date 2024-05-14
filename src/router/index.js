@@ -6,6 +6,9 @@ import Home from "../components/home-page/Home";
 import Game from "../components/puzzle/Game";
 import Products from "../components/products/Products";
 import Counters from "../components/Counters/Counters";
+import Users from "../components/users/Users";
+import { getUser, loader } from "../api/Loader";
+import User from "../components/users/User";
 
 export const router = createBrowserRouter([
     {
@@ -33,6 +36,19 @@ export const router = createBrowserRouter([
                 path: 'products',
                 element: <Products />
             },
+            {
+                path: 'users',
+                loader: loader,
+                element: <Users />,
+                children: [
+                    {
+                        path: ':id',
+                        loader: getUser,
+                        element: <User />
+                    },
+                ]
+            },
+
         ]
     }
 ]);

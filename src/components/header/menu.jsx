@@ -17,6 +17,7 @@ const Menu = () => {
         <NavLink to="/first">First</NavLink>
         <NavLink to="/puzzle">Puzzle</NavLink>
         <NavLink to="/products">Products</NavLink>
+        <NavLink to="/users">Users</NavLink>
       </nav>
       <div onClick={toggleTheme}>
         {theme === "light" ? <DarkModeIcon /> : <LightModeIcon />}

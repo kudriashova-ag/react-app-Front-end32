@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
 const TodoItem = ({ title, done, id, removeTask, toggleDone, updateTask }) => {
+  console.log("TodoItem");
+
   const [isEdit, setIsEdit] = useState(false);
   const [newTitle, setNewTitle] = useState(title);
 
@@ -21,6 +23,7 @@ const TodoItem = ({ title, done, id, removeTask, toggleDone, updateTask }) => {
       {title}
     </span>
   );
+  
   const editTemplate = (
     <input
       value={newTitle}
@@ -42,4 +45,4 @@ const TodoItem = ({ title, done, id, removeTask, toggleDone, updateTask }) => {
   );
 };
 
-export default TodoItem;
+export default React.memo(TodoItem);

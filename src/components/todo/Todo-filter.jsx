@@ -2,6 +2,7 @@ import classNames from "classnames";
 import React from "react";
 
 const TodoFilter = ({ setFilter, filterMap, activeFilter }) => {
+  console.log("TodoFilter");
   const filterKeys = Object.keys(filterMap); // ['All', 'Todo', 'Done']
 
   return (
@@ -19,4 +20,4 @@ const TodoFilter = ({ setFilter, filterMap, activeFilter }) => {
   );
 };
 
-export default TodoFilter;
+export default React.memo(TodoFilter);

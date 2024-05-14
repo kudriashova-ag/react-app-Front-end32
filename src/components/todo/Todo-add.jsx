@@ -1,9 +1,10 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 
 const TodoAdd = ({ addTask }) => {
+  console.log("TodoAdd");
+
   const [title, setTitle] = useState("");
   const [titleError, setTitleError] = useState(null);
-
 
   const clickHandler = () => {
     if (title.trim().length === 0) {
@@ -31,4 +32,4 @@ const TodoAdd = ({ addTask }) => {
   );
 };
 
-export default TodoAdd;
+export default React.memo(TodoAdd);
