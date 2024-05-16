@@ -9,6 +9,7 @@ import Counters from "../components/Counters/Counters";
 import Users from "../components/users/Users";
 import { getUser, loader } from "../api/Loader";
 import User from "../components/users/User";
+import Registration from "../components/Forms/Registration";
 
 export const router = createBrowserRouter([
     {
@@ -26,7 +27,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'first',
-                element: <Counters />
+                element: <Registration />
             },
             {
                 path: 'puzzle',
